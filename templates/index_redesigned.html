@@ -785,19 +785,35 @@
             
             <!-- Main Content -->
             <div class="content">
-                <!-- Profile Banner -->
-                {% if profile %}
-                <div class="profile-banner" role="status" aria-live="polite">
-                    <svg class="profile-banner-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    <div class="profile-banner-text">
-                        <strong>Current Profile:</strong> {{ profile.personal_info.name }} 
-                        <span style="color: var(--gray-500);">|</span> 
-                        <strong>Email:</strong> {{ profile.personal_info.email }}
-                    </div>
+            <!-- Profile Banner -->
+            {% if profile %}
+            <div class="profile-banner" role="status" aria-live="polite">
+                <svg class="profile-banner-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <div class="profile-banner-text">
+                    <strong>Current Profile:</strong> {{ profile.personal_info.name }} 
+                    <span style="color: var(--gray-500);">|</span> 
+                    <strong>Email:</strong> {{ profile.personal_info.email }}
                 </div>
-                {% endif %}
+            </div>
+            {% elif profile_warning %}
+            <div class="alert alert-error" role="alert">
+                <svg class="alert-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div class="alert-message">
+                    <strong>Profile Not Set Up:</strong> {{ profile_warning }}
+                    <br><br>
+                    <strong>Quick Setup:</strong>
+                    <ol style="margin: 10px 0 0 20px; padding-left: 10px;">
+                        <li>Run <code>python setup_profile.py</code> in your terminal, or</li>
+                        <li>Copy <code>data/master_profile.json.template</code> to <code>data/master_profile.json</code> and edit it</li>
+                    </ol>
+                    <p style="margin-top: 10px;">See <a href="https://github.com/Ismail-2001/AI-Job-Application-Agent/blob/main/PROFILE_SETUP_GUIDE.md" target="_blank" style="color: var(--error-600); text-decoration: underline;">Profile Setup Guide</a> for detailed instructions.</p>
+                </div>
+            </div>
+            {% endif %}
                 
                 <!-- Alert Container -->
                 <div id="alert-container" role="alert" aria-live="assertive"></div>

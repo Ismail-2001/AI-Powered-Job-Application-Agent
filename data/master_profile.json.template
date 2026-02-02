@@ -1,0 +1,75 @@
+{
+  "personal_info": {
+    "name": "Your Full Name",
+    "email": "your.email@example.com",
+    "phone": "+1 555-0123",
+    "linkedin": "https://www.linkedin.com/in/yourprofile",
+    "location": "Your City, State/Country"
+  },
+  "summary": "Write a 2-3 sentence professional summary highlighting your key achievements, years of experience, and core expertise. Example: 'Senior Software Engineer with 8 years of experience building scalable distributed systems. Expert in Python, cloud architecture, and team leadership. Proven track record of delivering high-impact projects that increased efficiency by 40%+.'",
+  "skills": {
+    "Languages": ["Python", "JavaScript", "Go", "SQL"],
+    "Frameworks": ["Django", "React", "FastAPI", "TensorFlow"],
+    "Tools": ["AWS", "Docker", "Kubernetes", "Git"],
+    "Soft Skills": ["Leadership", "Problem Solving", "Communication"]
+  },
+  "experience": [
+    {
+      "company": "Company Name",
+      "title": "Your Job Title",
+      "dates": "2020 - Present",
+      "location": "City, State",
+      "responsibilities": [
+        "Use STAR method: Led a team of 5 engineers (Situation) to migrate legacy monolith to microservices (Task), implemented microservices architecture (Action), improving system uptime from 99.5% to 99.99% (Result)",
+        "Quantify achievements: Reduced cloud costs by 30% through resource optimization, saving $50K annually",
+        "Show impact: Improved application performance by 40% by implementing caching strategies"
+      ]
+    },
+    {
+      "company": "Previous Company",
+      "title": "Previous Job Title",
+      "dates": "2018 - 2020",
+      "location": "City, State",
+      "responsibilities": [
+        "Developed full-stack features for e-commerce platform serving 100K+ users",
+        "Integrated algorithmic pricing engine using Python and Redis, increasing revenue by 25%",
+        "Mentored 2 junior developers, improving team productivity by 20%"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "University Name",
+      "degree": "B.S. Computer Science",
+      "dates": "2014 - 2018",
+      "gpa": "3.8/4.0",
+      "honors": ["Dean's List", "Summa Cum Laude"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Project Name",
+      "description": "Brief description of the project, technologies used, and impact. Example: 'Open source project that optimizes meeting times using genetic algorithms. Built with Python and used by 500+ organizations.'",
+      "technologies": ["Python", "Django", "PostgreSQL"],
+      "url": "https://github.com/yourusername/project"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "expiry": "2026"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "Native"
+    },
+    {
+      "language": "Spanish",
+      "proficiency": "Professional"
+    }
+  ]
+}

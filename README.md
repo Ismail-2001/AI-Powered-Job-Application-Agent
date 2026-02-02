@@ -16,6 +16,7 @@
 - [Tech Stack](#-tech-stack)
 - [Architecture](#-architecture)
 - [Installation & Setup](#-installation--setup)
+- [Profile Setup](#-profile-setup)
 - [Usage](#-usage)
 - [Deployment](#-deployment)
 - [Screenshots / Demo](#-screenshots--demo)
@@ -59,13 +60,7 @@ The system takes a job description as input and produces two professional docume
 - **⚡ Fast Processing**: Complete analysis and document generation in 20-30 seconds
 - **📄 Professional Output**: Generates industry-standard DOCX files ready for submission
 - **🔄 Retry Logic**: Robust error handling with automatic retries for API calls
-
-### Technical Excellence
-
-- **🏗️ Production-Ready Code**: Enterprise-grade Python with comprehensive error handling
-- **📝 Type Hints**: Full type annotation for better code maintainability
-- **🧪 Tested & Verified**: System verification scripts and comprehensive testing
-- **📚 Well-Documented**: Extensive documentation for developers and users
+- **👤 User-Friendly Setup**: Interactive profile setup wizard for easy onboarding
 
 ---
 
@@ -265,46 +260,30 @@ FLASK_SECRET_KEY=your_secret_key_here
 
 **⚠️ Important**: Never commit your `.env` file. It's already in `.gitignore`.
 
-#### 5. Update Your Profile
+#### 5. Set Up Your Profile
 
-Edit `data/master_profile.json` with your professional information:
+**Option A: Interactive Setup Wizard (Recommended)**
 
-```json
-{
-  "personal_info": {
-    "name": "Your Full Name",
-    "email": "your.email@example.com",
-    "phone": "+1 555-0123",
-    "linkedin": "https://www.linkedin.com/in/yourprofile",
-    "location": "Your City, State"
-  },
-  "summary": "Your professional summary highlighting key achievements...",
-  "skills": {
-    "Languages": ["Python", "JavaScript", "Go"],
-    "Frameworks": ["Django", "React", "FastAPI"],
-    "Tools": ["AWS", "Docker", "Kubernetes"]
-  },
-  "experience": [
-    {
-      "company": "Company Name",
-      "title": "Your Job Title",
-      "dates": "2020 - Present",
-      "location": "City, State",
-      "responsibilities": [
-        "Achievement with metrics (e.g., 'Increased revenue by 30%')",
-        "Another quantified achievement"
-      ]
-    }
-  ],
-  "education": [
-    {
-      "school": "University Name",
-      "degree": "Your Degree",
-      "dates": "2014 - 2018"
-    }
-  ]
-}
+```bash
+python setup_profile.py
 ```
+
+This wizard will guide you through creating your profile step-by-step.
+
+**Option B: Manual Setup**
+
+1. Copy the template:
+   ```bash
+   # Windows
+   copy data\master_profile.json.template data\master_profile.json
+   
+   # macOS/Linux
+   cp data/master_profile.json.template data/master_profile.json
+   ```
+
+2. Edit `data/master_profile.json` with your information
+
+See [PROFILE_SETUP_GUIDE.md](PROFILE_SETUP_GUIDE.md) for detailed instructions.
 
 #### 6. Verify Installation
 
@@ -321,6 +300,40 @@ You should see:
 ✅ PASS - Master Profile
 ✅ PASS - Environment Config
 ```
+
+---
+
+## 👤 Profile Setup
+
+### Quick Start
+
+The easiest way to set up your profile is using the interactive wizard:
+
+```bash
+python setup_profile.py
+```
+
+### What You'll Need
+
+- Personal information (name, email, LinkedIn, location)
+- Professional summary (2-3 sentences)
+- Skills (languages, frameworks, tools)
+- Work experience (with quantified achievements)
+- Education details
+- Projects (optional)
+
+### Profile Best Practices
+
+1. **Quantify Achievements**: Use numbers, percentages, dollar amounts
+2. **Use STAR Method**: Situation, Task, Action, Result
+3. **Include Keywords**: Industry-standard terms and technologies
+4. **Keep It Current**: Update regularly with new experiences
+
+**Example Achievement:**
+- ❌ "Worked on improving system performance"
+- ✅ "Improved system performance by 40% through caching strategies, reducing load times from 2s to 0.5s and saving $20K annually"
+
+See [PROFILE_SETUP_GUIDE.md](PROFILE_SETUP_GUIDE.md) for comprehensive guidance.
 
 ---
 
@@ -375,14 +388,17 @@ You should see:
 ### Example Workflow
 
 ```bash
-# 1. Start web server
+# 1. Set up your profile (first time only)
+python setup_profile.py
+
+# 2. Start web server
 python app.py
 
-# 2. In browser: http://localhost:5000
-# 3. Paste job description
-# 4. Click "Analyze & Generate CV"
-# 5. Download documents
-# 6. Review and customize if needed
+# 3. In browser: http://localhost:5000
+# 4. Paste job description
+# 5. Click "Analyze & Generate CV"
+# 6. Download documents
+# 7. Review and customize if needed
 ```
 
 ### API Usage (Advanced)
@@ -507,6 +523,7 @@ FLASK_ENV=production
 - [ ] **Job History Tracking**: Save and manage past applications
 - [ ] **Batch Processing**: Process multiple job descriptions simultaneously
 - [ ] **Progress Indicators**: Real-time progress updates for async processing
+- [ ] **Profile Editor UI**: Web-based profile editing interface
 
 ### Mid-term (3-6 months)
 

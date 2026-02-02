@@ -6,6 +6,7 @@ Role: Expose the agentic workflow as a scalable API.
 import os
 from typing import Dict, Any
 from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -21,6 +22,15 @@ from agents.cover_letter_generator import CoverLetterGenerator
 load_dotenv()
 
 app = FastAPI(title="AI Job Application Agent API")
+
+# Add CORS middleware to allow requests from web interface
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Initialize global engines
 api_key = os.getenv("DEEPSEEK_API_KEY")

@@ -1,10 +1,10 @@
 {
   "personal_info": {
-    "name": "Ismail Sajid",
-    "email": "ismailsajid0617@gmail.com",
+    "name": "Your Full Name",
+    "email": "your.email@example.com",
     "phone": "+1 555-0123",
-    "linkedin": "https://www.linkedin.com/in/ismailsajid0617/",
-    "location": "San Francisco, CA"
+    "linkedin": "https://www.linkedin.com/in/yourprofile",
+    "location": "Your City, State/Country"
   },
   "summary": "Senior Software Engineer with 8 years of experience building scalable distributed systems...",
   "skills": {

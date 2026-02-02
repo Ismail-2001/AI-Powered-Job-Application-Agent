@@ -7,6 +7,7 @@ import os
 import sys
 import json
 import re
+from typing import Tuple
 from flask import Flask, render_template, request, jsonify, send_file, flash
 from dotenv import load_dotenv
 
@@ -61,9 +62,36 @@ def load_profile(path: str = "data/master_profile.json") -> dict:
         with open(path, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        raise FileNotFoundError(f"Profile file not found at {path}")
+        # Check if template exists
+        template_path = path + ".template"
+        if os.path.exists(template_path):
+            raise FileNotFoundError(
+                f"Profile file not found at {path}. "
+                f"Please run 'python setup_profile.py' to create your profile, "
+                f"or copy '{template_path}' to '{path}' and edit it with your information."
+            )
+        raise FileNotFoundError(
+            f"Profile file not found at {path}. "
+            f"Please run 'python setup_profile.py' to create your profile."
+        )
     except json.JSONDecodeError:
         raise ValueError(f"Invalid JSON in {path}")
+
+def check_profile_setup() -> Tuple[bool, str]:
+    """Check if profile is set up and not using template values."""
+    try:
+        profile = load_profile()
+        name = profile.get('personal_info', {}).get('name', '')
+        
+        # Check if using template/default values
+        if name in ['Your Full Name', 'Alex Candidate', '']:
+            return False, "Profile exists but contains placeholder values. Please update with your information."
+        
+        return True, "Profile is set up correctly."
+    except FileNotFoundError as e:
+        return False, str(e)
+    except Exception as e:
+        return False, f"Error checking profile: {str(e)}"
 
 def sanitize_filename(name: str) -> str:
     """Sanitize filename for Windows."""
@@ -74,17 +102,71 @@ def index():
     """Main page."""
     try:
         profile = load_profile()
+        profile_ready, message = check_profile_setup()
+        
         # Use redesigned template if available, fallback to original
         try:
-            return render_template('index_redesigned.html', profile=profile)
+            return render_template('index_redesigned.html', 
+                                 profile=profile if profile_ready else None,
+                                 profile_warning=message if not profile_ready else None)
         except:
-            return render_template('index.html', profile=profile)
+            return render_template('index.html', 
+                                profile=profile if profile_ready else None,
+                                profile_warning=message if not profile_ready else None)
     except Exception as e:
         flash(f"Error loading profile: {str(e)}", "error")
         try:
-            return render_template('index_redesigned.html', profile=None)
+            return render_template('index_redesigned.html', profile=None, profile_warning=str(e))
         except:
-            return render_template('index.html', profile=None)
+            return render_template('index.html', profile=None, profile_warning=str(e))
+
+@app.route('/api/profile/check', methods=['GET'])
+def check_profile_endpoint():
+    """Check if profile is set up."""
+    try:
+        is_ready, message = check_profile_setup()
+        return jsonify({
+            'ready': is_ready,
+            'message': message
+        })
+    except Exception as e:
+        return jsonify({
+            'ready': False,
+            'message': str(e)
+        }), 500
+
+@app.route('/api/profile', methods=['GET'])
+def get_profile():
+    """Get current profile."""
+    try:
+        profile = load_profile()
+        # Remove sensitive data if needed
+        return jsonify({'success': True, 'profile': profile})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/profile', methods=['POST'])
+def update_profile():
+    """Update profile from web interface."""
+    try:
+        data = request.json
+        profile = data.get('profile')
+        
+        if not profile:
+            return jsonify({'success': False, 'error': 'No profile data provided'}), 400
+        
+        # Validate required fields
+        if not profile.get('personal_info', {}).get('name'):
+            return jsonify({'success': False, 'error': 'Name is required'}), 400
+        
+        # Save profile
+        os.makedirs("data", exist_ok=True)
+        with open("data/master_profile.json", 'w', encoding='utf-8') as f:
+            json.dump(profile, f, indent=2, ensure_ascii=False)
+        
+        return jsonify({'success': True, 'message': 'Profile updated successfully'})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/process', methods=['POST'])
 def process_job():
@@ -97,6 +179,15 @@ def process_job():
             return jsonify({
                 'success': False,
                 'error': 'Job description is too short. Please provide at least 50 characters.'
+            }), 400
+        
+        # Check profile setup
+        profile_ready, message = check_profile_setup()
+        if not profile_ready:
+            return jsonify({
+                'success': False,
+                'error': f'Profile not set up: {message}',
+                'profile_required': True
             }), 400
         
         # Initialize components if not already done
@@ -171,15 +262,6 @@ def download_file(filename):
         return send_file(file_path, as_attachment=True)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-@app.route('/api/profile', methods=['GET'])
-def get_profile():
-    """Get current profile."""
-    try:
-        profile = load_profile()
-        return jsonify({'success': True, 'profile': profile})
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     # Initialize components on startup
