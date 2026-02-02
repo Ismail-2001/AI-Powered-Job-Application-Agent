@@ -1,0 +1,75 @@
+{
+  "personal_info": {
+    "name": "Ismail Sajid",
+    "email": "ismailsajid0617@gmail.com",
+    "phone": "+447732474440",
+    "linkedin": "www.linkedin.com/in/ismailsajid0617",
+    "location": "Karāchi, Sindh, Pakistan"
+  },
+  "summary": "I build AI automation systems, Agentic AI workflows, and custom AI solutions that help businesses eliminate repetitive tasks and save 15–30 hours per week. I specialize in designing end-to-end AI-powered automation using tools like n8n, Voice AI, and intelligent AI integrations, turning slow, manual processes into scalable, self-running systems.",
+  "skills": {
+    "Technical": [
+      "TypeScript",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "Soft Skills": [],
+    "Tools": [
+      "n8n",
+      "Zapier",
+      "Make",
+      "Voice AI"
+    ]
+  },
+  "experience": [
+    {
+      "company": "Contra",
+      "title": "Agentic AI Engineer",
+      "dates": "December 2024 - Present",
+      "location": "Karāchi",
+      "responsibilities": []
+    },
+    {
+      "company": "Mexican Decor",
+      "title": "Automation Specialist",
+      "dates": "January 2025 - Present",
+      "location": null,
+      "responsibilities": []
+    },
+    {
+      "company": "ClearVoice",
+      "title": "Full Stack Engineer",
+      "dates": "August 2024 - November 2025",
+      "location": "United States",
+      "responsibilities": []
+    },
+    {
+      "company": "Madcom Digital - (PVT) Limited",
+      "title": "Full-stack Developer",
+      "dates": "September 2024 - December 2024",
+      "location": "Karachi Division, Sindh, Pakistan",
+      "responsibilities": []
+    }
+  ],
+  "education": [
+    {
+      "school": "National University of Computer and Emerging Sciences",
+      "degree": "Bachelor of Science - BS",
+      "field": "Artificial Intelligence",
+      "dates": "July 2023 - March 2027"
+    },
+    {
+      "school": "Governor Sindh Initiative for GenAI, Web3, and Metaverse",
+      "degree": "Cloud Applied Generative AI Engineering",
+      "field": "Generative AI and Robotics, Artificial Intelligence",
+      "dates": "February 2024 - August 2026"
+    }
+  ],
+  "certifications": [
+    "Content Marketing",
+    "Generative AI: Prompt Engineering",
+    "Build AI Apps with ChatGPT, Dall-E, and GPT-4",
+    "Cisco Content Networking Specialist Certification",
+    "Introduction to Model Context Protocol"
+  ]
+}
