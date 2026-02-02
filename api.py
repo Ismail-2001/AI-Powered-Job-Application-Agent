@@ -125,6 +125,58 @@ async def download_file(filename: str):
         media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
 
+class LinkedInImportRequest(BaseModel):
+    profile_text: str
+
+@app.post("/import-linkedin")
+async def import_linkedin_profile(request: LinkedInImportRequest):
+    """
+    Import profile from LinkedIn by parsing pasted profile text.
+    User copies their LinkedIn profile page content and pastes here.
+    """
+    try:
+        from utils.linkedin_scraper import import_from_linkedin_text
+        
+        # Parse and save the profile
+        profile = import_from_linkedin_text(request.profile_text, client)
+        
+        # Reinitialize RAG engine with new profile
+        global rag_engine
+        rag_engine = RAGEngine()
+        
+        return {
+            "success": True,
+            "message": "LinkedIn profile imported successfully!",
+            "profile": {
+                "name": profile.get("personal_info", {}).get("name", "Unknown"),
+                "headline": profile.get("personal_info", {}).get("headline", ""),
+                "experience_count": len(profile.get("experience", [])),
+                "skills_count": sum(len(v) for v in profile.get("skills", {}).values() if isinstance(v, list))
+            }
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/profile")
+async def get_current_profile():
+    """Get the current master profile"""
+    try:
+        import json
+        with open("data/master_profile.json", "r") as f:
+            profile = json.load(f)
+        
+        return {
+            "success": True,
+            "profile": profile
+        }
+    except FileNotFoundError:
+        return {
+            "success": False,
+            "message": "No profile found. Please import your LinkedIn profile first."
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

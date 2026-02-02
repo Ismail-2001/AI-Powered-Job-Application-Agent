@@ -1,67 +1,75 @@
 {
-  "education": [
-    {
-      "dates": "2014 - 2018",
-      "degree": "B.S. Computer Science",
-      "school": "University of Technology"
-    }
-  ],
-  "experience": [
-    {
-      "company": "Tech Corp Inc.",
-      "dates": "2020 - Present",
-      "location": "San Francisco, CA",
-      "responsibilities": [
-        "Led a team of 5 engineers to migrate legacy monolith to microservices.",
-        "Improved system uptime from 99.5% to 99.99% by implementing robust retry logic.",
-        "Reduced cloud costs by 30% through resource optimization."
-      ],
-      "title": "Senior Software Engineer"
-    },
-    {
-      "company": "Startup X",
-      "dates": "2018 - 2020",
-      "location": "New York, NY",
-      "responsibilities": [
-        "Developed full-stack features for the main e-commerce platform.",
-        "Integrated algorithmic pricing engine using Python and Redis.",
-        "Mentored 2 junior developers."
-      ],
-      "title": "Software Engineer"
-    }
-  ],
   "personal_info": {
     "name": "Ismail Sajid",
     "email": "ismailsajid0617@gmail.com",
-    "phone": "03170112366",
-    "linkedin": "https://www.linkedin.com/in/ismailsajid0617/",
-    "location": "Karachi, Pakistan"
+    "phone": "+447732474440",
+    "linkedin": "www.linkedin.com/in/ismailsajid0617",
+    "location": "Karāchi, Sindh, Pakistan"
   },
-  "projects": [
-    {
-      "description": "Open source project that optimizes meeting times using genetic algorithms.",
-      "name": "AI Scheduler"
-    }
-  ],
+  "summary": "I build AI automation systems, Agentic AI workflows, and custom AI solutions that help businesses eliminate repetitive tasks and save 15–30 hours per week. I specialize in designing end-to-end AI-powered automation using tools like n8n, Voice AI, and intelligent AI integrations, turning slow, manual processes into scalable, self-running systems.",
   "skills": {
-    "Frameworks": [
-      "Django",
-      "React",
-      "FastAPI",
-      "TensorFlow"
+    "Technical": [
+      "TypeScript",
+      "MongoDB",
+      "JavaScript"
     ],
-    "Languages": [
-      "Python",
-      "JavaScript",
-      "Go",
-      "SQL"
-    ],
+    "Soft Skills": [],
     "Tools": [
-      "AWS",
-      "Docker",
-      "Kubernetes",
-      "Git"
+      "n8n",
+      "Zapier",
+      "Make",
+      "Voice AI"
     ]
   },
-  "summary": "AI Engineer with 3 years of experience building scalable distributed systems."
+  "experience": [
+    {
+      "company": "Contra",
+      "title": "Agentic AI Engineer",
+      "dates": "December 2024 - Present",
+      "location": "Karāchi",
+      "responsibilities": []
+    },
+    {
+      "company": "Mexican Decor",
+      "title": "Automation Specialist",
+      "dates": "January 2025 - Present",
+      "location": null,
+      "responsibilities": []
+    },
+    {
+      "company": "ClearVoice",
+      "title": "Full Stack Engineer",
+      "dates": "August 2024 - November 2025",
+      "location": "United States",
+      "responsibilities": []
+    },
+    {
+      "company": "Madcom Digital - (PVT) Limited",
+      "title": "Full-stack Developer",
+      "dates": "September 2024 - December 2024",
+      "location": "Karachi Division, Sindh, Pakistan",
+      "responsibilities": []
+    }
+  ],
+  "education": [
+    {
+      "school": "National University of Computer and Emerging Sciences",
+      "degree": "Bachelor of Science - BS",
+      "field": "Artificial Intelligence",
+      "dates": "July 2023 - March 2027"
+    },
+    {
+      "school": "Governor Sindh Initiative for GenAI, Web3, and Metaverse",
+      "degree": "Cloud Applied Generative AI Engineering",
+      "field": "Generative AI and Robotics, Artificial Intelligence",
+      "dates": "February 2024 - August 2026"
+    }
+  ],
+  "certifications": [
+    "Content Marketing",
+    "Generative AI: Prompt Engineering",
+    "Build AI Apps with ChatGPT, Dall-E, and GPT-4",
+    "Cisco Content Networking Specialist Certification",
+    "Introduction to Model Context Protocol"
+  ]
 }
