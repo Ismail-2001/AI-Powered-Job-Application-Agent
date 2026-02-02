@@ -52,17 +52,13 @@ class CVCustomizer:
         {json.dumps(job_analysis, indent=2)}
 
         TASK:
-        1. Rewrite the "Professional Summary" to highlight relevant experience for THIS job (2-3 sentences only, no repetition).
-        2. Reorder and filter "Core Skills" to prioritize the job's "must_have_skills". Remove duplicates.
-        3. Select ONLY the top 3-4 most relevant "Work Experience" entries that match the job requirements.
+        1. Rewrite the "Professional Summary" to highlight relevant experience for THIS job.
+        2. Reorder and filter "Core Skills" to prioritize the job's "must_have_skills".
+        3. Select the top 3-4 most relevant "Work Experience" entries.
         4. For each selected role, rewrite bullet points to:
            - Use keywords from the job description
            - Emphasize overlapping skills
            - Use STAR method (Situation, Task, Action, Result) where possible
-           - Keep only 3-4 most impactful achievements per role (no repetition)
-        5. Include ALL education entries (but only once, no duplicates).
-        6. DO NOT repeat the same information in different sections.
-        7. If an experience/education appears multiple times, include it only once.
         
         OUTPUT FORMAT (JSON):
         {{
@@ -91,10 +87,6 @@ class CVCustomizer:
         2. Use EXACT vocabulary from the job analysis where applicable.
         3. Focus on impact and metrics (STAR method).
         4. Maintain a professional, executive tone.
-        5. NO REPETITION: Each piece of information should appear only once.
-        6. NO DUPLICATES: If the same experience/education appears multiple times in input, include it only once.
-        7. BE CONCISE: Summary should be 2-3 sentences, not repeating what's in experience section.
-        8. FILTER WISELY: Only include experiences that are relevant to the job. Skip irrelevant ones.
         """
 
         # Temperature 0.5 for a balance of creativity and adherence to facts
