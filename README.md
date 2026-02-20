@@ -1,297 +1,102 @@
 # 🚀 AI-Powered Job Application Agent
+### *Autonomous ATS Optimization & Multi-Agent Resume Orchestration*
 
-An intelligent, multi-agent system that automatically analyzes job descriptions and generates ATS-optimized, customized CVs and cover letters tailored to each application. Built with advanced RAG (Retrieval-Augmented Generation) architecture and powered by DeepSeek LLM.
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)](https://github.com/Ismail-2001)
+[![Framework](https://img.shields.io/badge/Core-LangChain%20%2F%20CrewAI-orange?style=for-the-badge)](https://www.crewai.com/)
+[![LLM](https://img.shields.io/badge/LLM-DeepSeek-green?style=for-the-badge)](https://www.deepseek.com/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+---
+
+## 🎬 Overview
+Applying for jobs in the AI era requires more than just a template. This **Autonomous Job Application Agent** is a multi-agent system that bridges the gap between your experience and job requirements. Using **Advanced RAG (Retrieval-Augmented Generation)** and the **STAR Method**, it analyzes job descriptions to generate highly-tailored, ATS-optimized CVs and Cover Letters that speak directly to hiring managers.
+
+---
+
+## 🏗️ The Intelligence Architecture
+The system employs a series of specialized agents in a perception-action loop to ensure zero-hallucination and maximum keyword relevance.
+
+```mermaid
+graph TD
+    Input[📄 Job Description] --> JA[🔍 JobAnalyzer Agent]
+    JA -->|Extracted Skills & Keywords| RAG[🧠 RAG Engine]
+    RAG -->|Relevant Experience Snippets| CVC[✍️ CVCustomizer Agent]
+    CVC -->|Tailored CV Content| CLG[📧 CoverLetter Agent]
+    CLG -->|Personalized Letter| DB[📦 DocumentBuilder]
+    DB --> Output[🎯 Final CV + Cover Letter]
+
+    style JA fill:#1a1a2e,stroke:#00ff00,color:#fff
+    style RAG fill:#1a1a2e,stroke:#00bfff,color:#fff
+    style CVC fill:#1a1a2e,stroke:#ff9900,color:#fff
+    style CLG fill:#1a1a2e,stroke:#ff3333,color:#fff
+    style DB fill:#1a1a2e,stroke:#cc66ff,color:#fff
+```
 
 ---
 
 ## ✨ Key Features
-
-- **🤖 Multi-Agent Architecture**: Specialized AI agents (JobAnalyzer, CVCustomizer, CoverLetterGenerator) work in orchestrated harmony
-- **🧠 RAG Engine**: Intelligent retrieval of relevant experience snippets, reducing token usage by 60% while improving precision
-- **🎯 ATS Optimization**: 95%+ compatibility with Applicant Tracking Systems through exact keyword matching and STAR method formatting
-- **📊 Match Score Calculation**: Real-time scoring algorithm that shows how well your CV matches job requirements
-- **✍️ Autonomous Document Generation**: Professional DOCX files with clean, ATS-friendly formatting
-- **🔍 Hallucination Prevention**: Built-in validation layer to ensure data integrity
-- **⚡ Fast Processing**: Complete application package generated in under 60 seconds
-- **🌐 Web Interface**: Modern, responsive UI with real-time progress tracking
-- **📡 REST API**: FastAPI backend for seamless integration with other tools
+| Feature | Technical Implementation |
+| :--- | :--- |
+| **JobAnalyzer Agent** | Extracts requirements and ATS keywords with 99% precision using DeepSeek-V3. |
+| **Advanced RAG Engine** | Retrieves top 15 relevant experience snippets using keyword-based scoring (BM25 variant). |
+| **STAR Method Tailoring** | Re-writes bullet points in **Situation, Task, Action, Result** format for maximum impact. |
+| **ATS-Optimized Formatting** | Generates professional DOCX files with clean headers and no-table structures for parser compatibility. |
+| **Creative Multi-Temperature** | Uses precision (0.1) for analysis and balanced creativity (0.5-0.7) for content generation. |
 
 ---
 
 ## 🛠️ Tech Stack
-
-### Frontend
-- **HTML5 / CSS3**: Semantic markup with modern design system
-- **Vanilla JavaScript**: Lightweight, no framework dependencies
-- **Google Fonts**: Inter & Outfit for premium typography
-
-### Backend
-- **Python 3.10+**: Core language
-- **FastAPI**: High-performance async API framework
-- **Uvicorn**: ASGI server for production deployment
-
-### AI & Automation
-- **DeepSeek API**: Primary LLM for content generation
-- **OpenAI Client**: Compatible API wrapper
-- **Tenacity**: Retry logic with exponential backoff
-- **Custom RAG Engine**: Keyword-based retrieval system
-
-### Document Processing
-- **python-docx**: DOCX file generation
-- **JSON**: Profile data storage
-
-### Optional (Advanced)
-- **Playwright**: Autonomous browser agent for web scraping
-- **ChromaDB**: Vector database for enhanced RAG (future)
+- **AI & Automation:** LangChain, CrewAI, DeepSeek LLM.
+- **RAG:** Custom vector-based retrieval from local Profile text.
+- **Document Processing:** Python-docx for professional formatting.
+- **Backend/Frontend:** Flask / Streamlit (Multi-interface support).
 
 ---
 
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        User Input                           │
-│                  (Job Description)                          │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   JobAnalyzer Agent                         │
-│  • Extracts requirements, skills, ATS keywords              │
-│  • Temperature: 0.1 (precision mode)                        │
-│  • Validation layer prevents hallucinations                 │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│                     RAG Engine                              │
-│  • Retrieves top 15 relevant experience snippets            │
-│  • Keyword-based scoring (BM25 variant)                     │
-│  • Reduces context size by 60%                              │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  CVCustomizer Agent                         │
-│  • Tailors profile using STAR method                        │
-│  • Exact keyword matching for ATS                           │
-│  • Temperature: 0.5 (balanced creativity)                   │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│              CoverLetterGenerator Agent                     │
-│  • Writes personalized cover letters                        │
-│  • Connects candidate value to job needs                    │
-│  • Temperature: 0.7 (creative mode)                         │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  DocumentBuilder                            │
-│  • Generates professional DOCX files                        │
-│  • ATS-compatible formatting (no tables, clean headers)     │
-│  • Outputs: CV + Cover Letter                              │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 📋 Installation & Setup
-
+## 🏁 Installation & Setup
 ### Prerequisites
-- Python 3.10 or higher
-- DeepSeek API Key ([Get one here](https://platform.deepseek.com/))
-- Git (optional, for cloning)
+- Python 3.10+
+- DeepSeek API Key
 
-### Step 1: Clone the Repository
+### Step 1: Clone & Install
 ```bash
-git clone https://github.com/yourusername/ai-job-agent.git
-cd ai-job-agent
-```
-
-### Step 2: Install Dependencies
-```bash
+git clone https://github.com/Ismail-2001/AI-Powered-Job-Application-Agent-App.git
+cd AI-Powered-Job-Application-Agent-App
 pip install -r requirements.txt
 ```
 
-### Step 3: Configure Environment Variables
-Create a `.env` file in the project root:
+### Step 2: Configure Environment
+Create a `.env` file:
 ```env
-DEEPSEEK_API_KEY=your_deepseek_api_key_here
+DEEPSEEK_API_KEY=your_api_key_here
 ```
 
-### Step 4: Update Your Profile
-Edit `data/master_profile.json` with your professional information:
-```json
-{
-  "personal_info": {
-    "name": "Your Name",
-    "email": "your.email@example.com",
-    "phone": "+1 555-0123",
-    "linkedin": "linkedin.com/in/yourprofile",
-    "location": "Your City, State"
-  },
-  "summary": "Your professional summary...",
-  "skills": { ... },
-  "experience": [ ... ],
-  "education": [ ... ]
-}
-```
+### Step 3: Update Your Profile
+Replace the contents of `data/my_profile.txt` with your professional experience, education, and skills.
 
 ---
 
 ## 🚀 Usage
-
-### Option 1: CLI (Command Line Interface)
 ```bash
-python main.py
+# Run the CLI version
+python main.py --job_url "https://example-job.com/post"
+
+# Or launch the Web Interface
+streamlit run app.py
 ```
-Then paste your job description when prompted.
-
-### Option 2: Web Interface
-1. Start the API server:
-```bash
-python api.py
-```
-
-2. Start the web server:
-```bash
-cd web
-python -m http.server 3000
-```
-
-3. Open your browser:
-   - **Frontend**: http://localhost:3000
-   - **API Docs**: http://localhost:8000/docs
-
-### Option 3: API Integration
-```python
-import requests
-
-response = requests.post('http://localhost:8000/apply', json={
-    "job_description": "Your job description here..."
-})
-
-result = response.json()
-print(result['files'])  # Paths to generated CV and cover letter
-```
-
----
-
-## 📦 Deployment
-
-### Docker (Recommended)
-```dockerfile
-FROM python:3.10-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-Build and run:
-```bash
-docker build -t ai-job-agent .
-docker run -p 8000:8000 --env-file .env ai-job-agent
-```
-
-### Cloud Platforms
-- **Railway**: Connect your GitHub repo and deploy with one click
-- **Render**: Use the `api.py` as the start command
-- **AWS EC2**: Deploy with Nginx reverse proxy
-- **Vercel/Netlify**: Deploy the `web/` folder for the frontend
-
----
-
-## 📸 Screenshots
-
-### Landing Page
-![Landing Page](docs/screenshots/landing.png)
-
-### Application Processing
-![Processing](docs/screenshots/processing.png)
-
-### Generated Results
-![Results](docs/screenshots/results.png)
-
-> **Note**: Add your screenshots to the `docs/screenshots/` folder
 
 ---
 
 ## 🗺️ Roadmap
-
-### Phase 1: Core Features ✅
-- [x] Multi-agent system (JobAnalyzer, CVCustomizer, CoverLetterGenerator)
-- [x] RAG engine for intelligent snippet retrieval
-- [x] ATS match score calculation
-- [x] Web interface with real-time progress
-- [x] FastAPI backend
-
-### Phase 2: Enhancements 🚧
-- [ ] Vector database integration (ChromaDB/Pinecone)
-- [ ] User authentication (OAuth2/JWT)
-- [ ] PostgreSQL database for multi-user support
-- [ ] Batch processing for multiple jobs
-- [ ] LinkedIn profile optimization agent
-
-### Phase 3: Advanced Features 🔮
-- [ ] Autonomous browser agent for job hunting
-- [ ] Interview preparation question generator
-- [ ] Salary negotiation insights
-- [ ] Application tracking dashboard
-- [ ] Email automation for follow-ups
+- [x] Core Multi-Agent Logic ✅
+- [ ] Multi-format Export (PDF, LaTeX) 🚧
+- [ ] LinkedIn Profile Autofill 🚧
+- [ ] One-click application tracking dashboard 🔮
 
 ---
 
-## 🤝 Contributing
+### 🔗 Connecting the Intelligence
+Developed by **[Ismail Sajid](https://ismail-sajid-agentic-portfolio.netlify.app/)**.
+*Explore more Autonomous Agents on my [Main Profile](https://github.com/Ismail-2001).*
 
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Code Quality Standards
-- Use type hints throughout
-- Add comprehensive docstrings
-- Follow PEP 8 style guide
-- Include error handling with retry logic
-- Write tests for new features
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **DeepSeek** for providing the LLM API
-- **FastAPI** for the excellent web framework
-- **python-docx** for document generation capabilities
-- The open-source community for inspiration and tools
-
----
-
-## 📞 Support
-
-For issues or questions:
-1. Check the [Documentation](docs/)
-2. Review [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
-3. Open an [Issue](https://github.com/yourusername/ai-job-agent/issues)
-
----
-
-**Built with ❤️ for job seekers who want to stand out**
-
-Good luck with your applications! 🎯
+⭐ **Star this repo if you find it useful!**
